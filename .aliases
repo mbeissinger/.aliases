@@ -1,0 +1,60 @@
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+  colorflag="--color"
+else # OS X `ls`
+  colorflag="-G"
+fi
+
+# Always use color output for `ls`
+alias ls="command ls ${colorflag}"
+export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+
+# List all files colorized in long format
+alias ll='ls -lh'
+
+# List all files colorized in long format, including dot files
+alias la="ls -lha"
+
+# List only directories
+alias lsd='ls -l | grep "^d"'
+
+# CD to home directory
+alias home="cd ~"
+
+# Alias for eclipse
+alias eclipse='~/Applications/eclipse/Eclipse'
+
+# Homebrew stuffs
+alias update="brew update"
+alias upgrade="brew upgrade --all"
+alias cleanup="brew cleanup"
+alias caskclean="brew cask cleanup"
+alias install="brew install"
+alias doctor="echo '\nDoctor? Doctor who?\n' && brew doctor"
+alias uud="update; upgrade; cleanup; caskclean; doctor; brew cask doctor"
+alias ood="uud"
+
+
+# Activate a virtual environment in venv/ folder
+alias activate="source venv/bin/activate"
+
+# Git related stuff
+alias master='git checkout master'
+alias branches='git branches'
+alias co='git checkout'
+alias cob='git checkout -b'
+alias remote='git remote -v'
+alias pull='git pull'
+alias push='git push'
+alias fetch='git fetch -p'
+alias branch='git branch'
+alias commit='git commit'
+
+# Docker
+alias docker='nocorrect docker'
+alias dcomp='docker-compose'
+alias dmstp='docker-machine stop default'
+# Remove dangling <none> images in docker - see http://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/
+alias dclean='docker rm `docker ps -aq`; docker rmi $(docker images -f "dangling=true" -q); echo "\ndone!"'
+alias dcdu='dcomp down; dclean; dcomp up'
+alias dmed='eval $(docker-machine env default)'
