@@ -30,7 +30,6 @@ alias doctor="echo '\nDoctor? Doctor who?\n' && brew doctor"
 alias uud="update; upgrade; cleanup; caskclean; doctor; brew cask doctor"
 alias ood="uud"
 
-
 # Activate a virtual environment in venv/ folder
 alias activate="source venv/bin/activate"
 
@@ -54,3 +53,36 @@ alias dmstp='docker-machine stop default'
 alias dclean='docker rm `docker ps -aq`; docker rmi $(docker images -f "dangling=true" -q); echo "\ndone!"'
 alias dcdu='dcomp down; dclean; dcomp up'
 alias dmed='eval $(docker-machine env default)'
+
+# Utility commands (mostly from https://news.ycombinator.com/item?id=9869231)
+alias o='open'
+alias q='exit'
+alias c='clear'
+alias mem='top -l1 | grep PhysMem'
+alias cpu='top -l1 | grep CPU\ usage'
+# Search process by name and highlight
+function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
+# Search for files and page it
+function search() { find . -iname "*$@*" | less; }
+# just run "up" to "cd ..", or run "up 6" to "cd ../../../../../.."
+function up {
+    if [[ "$#" < 1 ]] ; then
+        cd ..
+    else
+        CDSTR=""
+        for i in {1..$1} ; do
+            CDSTR="../$CDSTR"
+        done
+        cd $CDSTR
+    fi
+}
+# cd commands followed by ls
+alias ..='cd .. && ls'
+alias ...='cd ../.. && ls'
+alias ....='cd ../../.. && ls'
+alias .....='cd ../../../.. && ls'
+alias ......='cd ../../../../.. && ls'
+alias -- -='cd - && ls'
+
+# Fun commands :3
+alias please='sudo'
