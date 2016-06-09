@@ -20,12 +20,6 @@ alias la="ls -lhaF"
 # List only directories
 alias lsd='ls -l | grep "^d"'
 
-# CD to home directory
-alias home="cd ~"
-
-# Alias for eclipse
-alias eclipse='~/Applications/eclipse/Eclipse'
-
 # Homebrew stuffs
 alias update="brew update"
 alias upgrade="brew upgrade --all"
