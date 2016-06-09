@@ -61,7 +61,7 @@ alias c='clear'
 alias mem='top -l1 | grep PhysMem'
 alias cpu='top -l1 | grep CPU\ usage'
 # Search process by name and highlight
-function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
+function psgrep() { ps axu | grep -v grep | grep "$@" -i --color=auto; }
 # Search for files and page it
 function search() { find . -iname "*$@*" | less; }
 # just run "up" to "cd ..", or run "up 6" to "cd ../../../../../.."
@@ -85,4 +85,4 @@ alias ......='cd ../../../../.. && ls'
 alias -- -='cd - && ls'
 
 # Fun commands :3
-alias please='sudo'
+alias please='sudo '
