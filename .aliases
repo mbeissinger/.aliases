@@ -44,6 +44,7 @@ alias push='git push'
 alias fetch='git fetch -p'
 alias branch='git branch'
 alias commit='git commit'
+alias merge='git merge'
 
 # Docker
 alias docker='nocorrect docker'
