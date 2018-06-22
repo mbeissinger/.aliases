@@ -9,7 +9,7 @@ else # OS X `ls`
 fi
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}"
+#alias ls="command ls ${colorflag}"
 
 # List all files colorized in long format
 alias ll='ls -lh'
@@ -22,7 +22,7 @@ alias lsd='ls -l | grep "^d"'
 
 # Homebrew stuffs
 alias update="brew update"
-alias upgrade="brew upgrade --all"
+alias upgrade="brew upgrade"
 alias cleanup="brew cleanup"
 alias caskclean="brew cask cleanup"
 alias install="brew install"
@@ -30,14 +30,27 @@ alias doctor="echo '\nDoctor? Doctor who?\n' && brew doctor"
 alias uud="update; upgrade; cleanup; caskclean; doctor; brew cask doctor"
 alias ood="uud"
 
+# Httpie
+alias https='http --default-scheme=https'
+
 # Activate a virtual environment in venv/ folder
 alias activate="source venv/bin/activate"
+# Re-establish venv python symlinks after homebrew breaks (upgrades) them
+alias venvfix="gfind ./venv -type l -xtype l -delete && virtualenv venv"
+# Python
+alias venv3='python3 -m venv venv'
+alias virtualenv3='virtualenv -p python3'
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 # Git related stuff
 alias master='git checkout master'
 alias branches='git branches'
 alias co='git checkout'
 alias cob='git checkout -b'
+function cobu() {
+  git checkout -b $1
+  git push -u origin $1
+}
 alias remote='git remote -v'
 alias pull='git pull'
 alias push='git push'
@@ -45,6 +58,7 @@ alias fetch='git fetch -p'
 alias branch='git branch'
 alias commit='git commit'
 alias merge='git merge'
+alias fp='fetch && pull'
 
 # Docker
 alias docker='nocorrect docker'
@@ -54,6 +68,10 @@ alias dmstp='docker-machine stop default'
 alias dclean='docker rm `docker ps -aq`; docker rmi $(docker images -f "dangling=true" -q); echo "\ndone!"'
 alias dcdu='dcomp down; dclean; dcomp up'
 alias dmed='eval $(docker-machine env default)'
+
+# Node
+alias ys='yarn start'
+alias ns='node start'
 
 # Utility commands (mostly from https://news.ycombinator.com/item?id=9869231)
 alias o='open'
@@ -87,3 +105,4 @@ alias -- -='cd - && ls'
 
 # Fun commands :3
 alias please='sudo '
+alias rip='sudo pkill '
