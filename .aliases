@@ -24,10 +24,10 @@ alias lsd='ls -l | grep "^d"'
 alias update="brew update"
 alias upgrade="brew upgrade"
 alias cleanup="brew cleanup"
-alias caskclean="brew cask cleanup"
+# alias caskclean="brew cask cleanup"
 alias install="brew install"
 alias doctor="echo '\nDoctor? Doctor who?\n' && brew doctor"
-alias uud="update; upgrade; cleanup; caskclean; doctor; brew cask doctor"
+alias uud="update; upgrade; cleanup; doctor; brew cask doctor"
 alias ood="uud"
 
 # Httpie
