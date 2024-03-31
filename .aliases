@@ -81,6 +81,10 @@ alias dmed='eval $(docker-machine env default)'
 alias ys='yarn start'
 alias ns='node start'
 
+# Wireguard
+alias wgu='wg-quick up ~/.config/wireguard/wg0.conf'
+alias wgd='wg-quick down ~/.config/wireguard/wg0.conf'
+
 # Utility commands (mostly from https://news.ycombinator.com/item?id=9869231)
 if [[ "$(uname)" == "Darwin" ]]; then
   alias o='open'
