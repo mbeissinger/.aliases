@@ -38,7 +38,7 @@ fi
 alias ood="uud"
 
 # Httpie
-alias https='http --default-scheme=https'
+#alias https='http --default-scheme=https'
 
 # Activate a virtual environment in venv/ or .venv/ folder
 alias activate='source "$( [ -d "venv" ] && echo "venv" || echo ".venv" )/bin/activate"'
@@ -68,6 +68,10 @@ alias branch='git branch'
 alias commit='git commit'
 alias merge='git merge'
 alias fp='fetch && pull'
+alias wta='git worktree add'
+alias wtl='git worktree list'
+alias wtr='git worktree remove'
+alias wtp='git worktree prune'
 
 # Docker
 alias docker='nocorrect docker'
