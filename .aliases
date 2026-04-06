@@ -124,6 +124,15 @@ alias .....='cd ../../../.. && ls'
 alias ......='cd ../../../../.. && ls'
 alias -- -='cd - && ls'
 
+# Clamshell mode (disable/enable sleep on lid close)
+clamshell() {
+  case "${1:-status}" in
+    on)  sudo pmset -a disablesleep 1 && echo "Sleep disabled (clamshell mode on)" ;;
+    off) sudo pmset -a disablesleep 0 && echo "Sleep re-enabled (clamshell mode off)" ;;
+    *)   pmset -g | grep disablesleep ;;
+  esac
+}
+
 # Fun commands :3
 alias please='sudo '
 alias rip='sudo pkill '
