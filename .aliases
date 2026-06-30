@@ -68,7 +68,37 @@ alias branch='git branch'
 alias commit='git commit'
 alias merge='git merge'
 alias fp='fetch && pull'
-alias wta='git worktree add'
+
+wtt() {
+  local branch="$1"
+  local remote="${2:-origin}"
+  local root="${3:-../wt}"
+
+  if [ -z "$branch" ]; then
+    echo "usage: wtt <branch> [remote] [worktree-root]" >&2
+    return 2
+  fi
+
+  local path_name="${branch//\//_}"
+
+  git fetch "$remote" || return
+  git worktree add --track -b "$branch" "$root/$path_name" "$remote/$branch"
+}
+
+wta() {
+  local branch="$1"
+  local root="${2:-../wt}"
+
+  if [ -z "$branch" ]; then
+    echo "usage: wta <branch> [worktree-root]" >&2
+    return 2
+  fi
+
+  local path_name="${branch//\//_}"
+
+  git worktree add -b "$branch" "$root/$path_name"
+}
+
 alias wtl='git worktree list'
 alias wtr='git worktree remove'
 alias wtp='git worktree prune'
